@@ -19,7 +19,15 @@ Follow these steps to configure the permissions:
 
 These settings are **necessary only for private repositories**. For public repositories, this configuration is not required.
 
-## Project Setup
+## Pre-commit Hooks Setup
+
+To enable pre-commit hooks in your repository, you need to install `pre-commit` by running the following command:
+
+```bash
+uvx pre-commit install
+```
+
+## Workspace Setup
 
 Update your workspace metadata in `Cargo.toml`:
 
@@ -39,11 +47,3 @@ cargo new --vcs none crates/<package-name>
 ```
 
 For a library crate, add `--lib`.
-
-## Pre-commit Hooks Setup
-
-To enable pre-commit hooks in your repository, you need to install `pre-commit` by running the following command:
-
-```bash
-uvx pre-commit install
-```
