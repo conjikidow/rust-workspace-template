@@ -54,6 +54,7 @@ To set up release management using `release-plz` and `dist`, follow these steps:
 
 - Common setup
   1. Set `release = true` in the `[workspace]` section of `.release-plz.toml` to enable releases.
+  2. Use a GitHub App to mint the token for `release-plz`, and store the App ID and private key as repository secrets named `APP_ID` and `APP_PRIVATE_KEY` (see [release-plz docs](https://release-plz.dev/docs/github/token#use-a-github-app)).
 
 - If you ship binaries (use `dist`)
   1. Install `dist` and let it create the Release on tags and attach assets.
