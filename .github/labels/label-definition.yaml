@@ -46,6 +46,6 @@
   description: "Update dependencies"
   color: "D6D6D6"
 
-- name: "versioning"
-  description: "Versioning changes"
+- name: "release"
+  description: "Release"
   color: "D6D6D6"

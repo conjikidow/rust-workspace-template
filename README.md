@@ -1,6 +1,6 @@
-# repository-template
+# rust-repository-template
 
-This is a general template repository.
+This is a template repository for Rust workspace.
 
 ## GitHub Actions Permissions Setup
 
@@ -23,29 +23,52 @@ These settings are **necessary only for private repositories**. For public repos
 
 To enable pre-commit hooks in your repository, you need to install `pre-commit` by running the following command:
 
-```console
+```bash
 uvx pre-commit install
 ```
 
-## Version Bumping by Labels
+## Workspace Setup
 
-This repository is configured to automatically bump the version when a pull request is merged with one of the following labels:
-
-- `update::major`
-- `update::minor`
-- `update::patch`
-
-Simply add one of these labels to your pull request before merging.
-A new pull request for the version bump will be automatically created.
-
-The version number is managed via the `.bumpversion.toml` file in the repository root.
-If your project defines its version in specific files (e.g., `pyproject.toml`, `Cargo.toml`, etc.), you may need to add entries like the following to `.bumpversion.toml`:
+Update your workspace metadata in `Cargo.toml`:
 
 ```toml
-[[tool.bumpversion.files]]
-filename = "pyproject.toml"
-search = 'version = "{current_version}"'
-replace = 'version = "{new_version}"'
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+readme = "README.md"
+license = "MIT OR Apache-2.0"  # Replace with your license
+repository = "https://github.com/conjikidow/repo"  # Replace with your repository URL
 ```
 
-For more details, see [conjikidow/bump-version](https://github.com/conjikidow/bump-version).
+Add packages to the workspace by:
+
+```bash
+cargo new --vcs none crates/<package-name>
+```
+
+For a library crate, add `--lib`.
+
+## Release Management Setup
+
+To set up release management using `release-plz` and `dist`, follow these steps:
+
+- Common setup
+  1. Set `release = true` in the `[workspace]` section of `.release-plz.toml` to enable releases.
+
+- If you ship binaries (use `dist`)
+  1. Install `dist` and let it create the Release on tags and attach assets.
+
+     ```bash
+     cargo binstall cargo-dist
+     dist init --yes
+     ```
+
+- If you do not ship binaries (library only)
+  1. Let `release-plz` create the GitHub Release by setting `git_release_enable = true`.
+
+For more details, see [release-plz](https://release-plz.ieni.dev/docs) and [dist](https://axodotdev.github.io/cargo-dist/book).
+
+### Trusted publishing (crates.io OIDC)
+
+Enable trusted publishing on crates.io.
+New crates cannot be published via OIDC the first time—run the first `cargo publish` manually.

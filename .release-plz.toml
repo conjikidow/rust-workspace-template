@@ -1,0 +1,7 @@
+[workspace]
+git_release_enable = false  # Set to true if you do not use dist
+pr_branch_prefix = "release-plz/"
+pr_labels = ["release", "automated"]
+publish_timeout = "10m"
+release = false  # Set to true to enable releases
+release_always = false
