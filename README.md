@@ -39,17 +39,3 @@ To enable pre-commit hooks in your repository, you need to install `pre-commit` 
 ```console
 uvx pre-commit install
 ```
-
-## Version Bumping by Labels
-
-This repository is configured to automatically bump the version when a pull request is merged with one of the following labels:
-
-- `update::major`
-- `update::minor`
-- `update::patch`
-
-Simply add one of these labels to your pull request before merging.
-A new pull request for the version bump will be automatically created.
-
-The version number is managed via the `.bumpversion.toml` file in the repository root.
-For more details, see [conjikidow/bump-version](https://github.com/conjikidow/bump-version).
