@@ -1,6 +1,6 @@
 # rust-repository-template
 
-This is a template repository for Rust projects.
+This is a template repository for Rust workspace.
 
 ## GitHub Actions Permissions Setup
 
@@ -19,33 +19,18 @@ Follow these steps to configure the permissions:
 
 These settings are **necessary only for private repositories**. For public repositories, this configuration is not required.
 
-## Project Name Setup
+## Project Setup
 
-Replace `project-name` with your project name in the following files:
+Update your workspace metadata in `Cargo.toml`:
 
-- `Cargo.toml`
-
-  ```toml
-  [package]
-  name = "project-name"  # Replace with your project name
-  version = "0.1.0"
-  edition = "2024"
-  description = "Add your description here"
-  readme = "README.md"
-  license = "MIT OR Apache-2.0"  # Replace with your license
-  repository = "https://github.com/conjikidow/repo"  # Replace with your repository URL
-  publish = false
-  ```
-
-- `.bumpversion.toml`
-
-  ```toml
-  [[tool.bumpversion.files]]
-  filename = "Cargo.lock"
-  search = 'name = "project-name"\nversion = "{current_version}"'  # Replace with your project name
-  replace = 'name = "project-name"\nversion = "{new_version}"'     # Replace with your project name
-  regex = true
-  ```
+```toml
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+readme = "README.md"
+license = "MIT OR Apache-2.0"  # Replace with your license
+repository = "https://github.com/conjikidow/repo"  # Replace with your repository URL
+```
 
 ## Pre-commit Hooks Setup
 
