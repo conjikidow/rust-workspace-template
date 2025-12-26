@@ -8,5 +8,6 @@ edition = "2024"
 readme = "README.md"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/conjikidow/repo"
+authors = ["conjikidow"]
 
 [workspace.dependencies]

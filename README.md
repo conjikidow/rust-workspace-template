@@ -66,9 +66,9 @@ To set up release management using `release-plz` and `dist`, follow these steps:
 - If you do not ship binaries (library only)
   1. Let `release-plz` create the GitHub Release by setting `git_release_enable = true`.
 
+For more details, see [release-plz](https://release-plz.ieni.dev/docs) and [dist](https://axodotdev.github.io/cargo-dist/book).
+
 ### Trusted publishing (crates.io OIDC)
 
 Enable trusted publishing on crates.io.
 New crates cannot be published via OIDC the first time—run the first `cargo publish` manually.
-
-For more details, see [release-plz](https://github.com/release-plz/release-plz).
