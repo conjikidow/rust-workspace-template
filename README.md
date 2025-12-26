@@ -1,6 +1,6 @@
-# repository-template
+# rust-repository-template
 
-This is a general template repository.
+This is a template repository for Rust projects.
 
 ## GitHub Actions Permissions Setup
 
@@ -18,6 +18,31 @@ Follow these steps to configure the permissions:
 ![GitHub Actions permissions setup screenshot](https://github.com/user-attachments/assets/da55e896-e087-486e-aadc-7fc1283dc652)
 
 These settings are **necessary only for private repositories**. For public repositories, this configuration is not required.
+
+## Project Name Setup
+
+Replace `project-name` with your project name in the following files:
+
+- `Cargo.toml`
+
+  ```toml
+  [package]
+  name = "project-name"  # Replace with your project name
+  version = "0.1.0"
+  edition = "2024"
+  description = "Add your description here"
+  readme = "README.md"
+  ```
+
+- `.bumpversion.toml`
+
+  ```toml
+  [[tool.bumpversion.files]]
+  filename = "Cargo.lock"
+  search = 'name = "project-name"\nversion = "{current_version}"'  # Replace with your project name
+  replace = 'name = "project-name"\nversion = "{new_version}"'     # Replace with your project name
+  regex = true
+  ```
 
 ## Pre-commit Hooks Setup
 
@@ -39,13 +64,4 @@ Simply add one of these labels to your pull request before merging.
 A new pull request for the version bump will be automatically created.
 
 The version number is managed via the `.bumpversion.toml` file in the repository root.
-If your project defines its version in specific files (e.g., `pyproject.toml`, `Cargo.toml`, etc.), you may need to add entries like the following to `.bumpversion.toml`:
-
-```toml
-[[tool.bumpversion.files]]
-filename = "pyproject.toml"
-search = 'version = "{current_version}"'
-replace = 'version = "{new_version}"'
-```
-
 For more details, see [conjikidow/bump-version](https://github.com/conjikidow/bump-version).
