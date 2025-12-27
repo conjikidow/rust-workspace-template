@@ -22,6 +22,10 @@
   "pre-commit": {
     enabled: true,
   },
+  lockFileMaintenance: {
+    enabled: true,
+    // automerge: true,
+  },
   labels: [
     "automated",
     "dependencies",
