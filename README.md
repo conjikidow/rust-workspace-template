@@ -46,7 +46,7 @@ Add packages to the workspace by:
 cargo new --vcs none crates/<package-name>
 ```
 
-For a library crate, add `--lib`.
+By default this template is binary-first; add `--lib` if you need a library crate.
 
 ## Release Management Setup
 
@@ -56,16 +56,18 @@ To set up release management using `release-plz` and `dist`, follow these steps:
   1. Set `release = true` in the `[workspace]` section of `.release-plz.toml` to enable releases.
   2. Use a GitHub App to mint the token for `release-plz`, and store the App ID and private key as repository secrets named `APP_ID` and `APP_PRIVATE_KEY` (see [release-plz docs](https://release-plz.dev/docs/github/token#use-a-github-app)).
 
-- If you ship binaries (use `dist`)
-  1. Install `dist` and let it create the Release on tags and attach assets.
+- Binary publishing (default; uses `dist`)
+  1. `dist` is already configured (`dist-workspace.toml`).
+  2. If you need to change the settings, install `dist` and run `dist init` and follow the prompts.
 
      ```bash
      cargo binstall cargo-dist
-     dist init --yes
+     dist init
      ```
 
-- If you do not ship binaries (library only)
-  1. Let `release-plz` create the GitHub Release by setting `git_release_enable = true`.
+- Library-only publishing
+  1. Remove `dist-workspace.toml` and `.github/workflows/release.yml`, and delete the `[profile.dist]` section from `Cargo.toml`.
+  2. Let `release-plz` create the GitHub Release by setting `git_release_enable = true`.
 
 For more details, see [release-plz](https://release-plz.ieni.dev/docs) and [dist](https://axodotdev.github.io/cargo-dist/book).
 

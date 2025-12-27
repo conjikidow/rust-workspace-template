@@ -11,3 +11,7 @@ repository = "https://github.com/conjikidow/repo"
 authors = ["conjikidow"]
 
 [workspace.dependencies]
+
+[profile.dist]
+inherits = "release"
+lto = "thin"

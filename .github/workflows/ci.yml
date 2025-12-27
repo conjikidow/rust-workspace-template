@@ -39,7 +39,7 @@ jobs:
             workflow:
               - .github/workflows/**
             workflow_ci:
-              - .github/workflows/ci.yaml
+              - .github/workflows/ci.yml
             rust:
               - '**/*.rs'
               - '**/Cargo.toml'
@@ -67,10 +67,21 @@ jobs:
           reporter: github-pr-review
           fail_level: error
 
+      - name: List workflows for zizmor
+        id: list-workflows
+        run: |
+          {
+            echo "inputs<<EOF"
+            find .github/workflows -maxdepth 1 -type f \( -name '*.yml' -o -name '*.yaml' \) \
+              ! -name 'release.yml'
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
       - name: Run zizmor
         uses: zizmorcore/zizmor-action@e639db99335bc9038abc0e066dfcd72e23d26fb4 # v0.3.0
-        # with:
-        #   advanced-security: false  # must be false for private repo
+        with:
+          inputs: ${{ steps.list-workflows.outputs.inputs }}
+          # advanced-security: false  # must be false for private repo
 
   check-rust:
     name: Check Rust
