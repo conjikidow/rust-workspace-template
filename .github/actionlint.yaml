@@ -1,0 +1,8 @@
+paths:
+  ".github/workflows/release.yaml":
+    ignore:
+      # shellcheck SC2086: Double quote to prevent globbing and word splitting
+      - 'shellcheck reported issue in this script: SC2086:.*'
+
+      # shellcheck SC2129: Consider using { cmd1; cmd2; } >> file
+      - 'shellcheck reported issue in this script: SC2129:.*'
