@@ -19,14 +19,6 @@ Follow these steps to configure the permissions:
 
 These settings are **necessary only for private repositories**. For public repositories, this configuration is not required.
 
-## Pre-commit Hooks Setup
-
-To enable pre-commit hooks in your repository, you need to install `pre-commit` by running the following command:
-
-```bash
-uvx pre-commit install
-```
-
 ## Workspace Setup
 
 Update your workspace metadata in `Cargo.toml`:
@@ -36,9 +28,12 @@ Update your workspace metadata in `Cargo.toml`:
 version = "0.1.0"
 edition = "2024"
 readme = "README.md"
-license = "MIT OR Apache-2.0"  # Replace with your license
+license = "Apache-2.0 OR MIT"  # Replace with your license
 repository = "https://github.com/conjikidow/repo"  # Replace with your repository URL
 ```
+
+This template repository includes [`LICENSE-APACHE`](LICENSE-APACHE) and [`LICENSE-MIT`](LICENSE-MIT) by default.
+They are provided as a template and may be modified, replaced, or removed as needed.
 
 Add packages to the workspace by:
 
@@ -75,3 +70,17 @@ For more details, see [release-plz](https://release-plz.ieni.dev/docs) and [dist
 
 Enable trusted publishing on crates.io.
 New crates cannot be published via OIDC the first time—run the first `cargo publish` manually.
+
+## Pre-commit Hooks Setup
+
+To enable pre-commit hooks in your repository, you need to install `pre-commit` by running the following command:
+
+```bash
+uvx pre-commit install
+```
+
+## License
+
+Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT license](LICENSE-MIT) at your option.
+
+Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in this software by you, as defined in the Apache-2.0 license, shall be dually licensed as above, without any additional terms or conditions.
