@@ -51,7 +51,6 @@ jobs:
     if: ${{ needs.determine-changes.outputs.workflow == 'true' }}
     runs-on: ubuntu-latest
     permissions:
-      contents: read
       pull-requests: write
       security-events: write
 
@@ -129,8 +128,8 @@ jobs:
       - name: Run tests
         run: cargo test --workspace --all-features
 
-  check-spelling:
-    name: Check spelling
+  check-typos:
+    name: Check typos
     runs-on: ubuntu-latest
 
     steps:
@@ -145,3 +144,27 @@ jobs:
           files: |
             .
             .github/**
+
+  lint-commit-messages:
+    name: Lint commit messages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the main repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Commitizen
+        uses: commitizen-tools/setup-cz@d9dea553c82d773957ef71a6ca2be84e3c175bf5 # v0.6.0
+        with:
+          python-version: '3.x'
+
+      - name: Lint commit messages on push
+        if: github.event_name == 'push'
+        run: cz check --rev-range ${{ github.event.before }}..${{ github.sha }}
+
+      - name: Lint commit messages on pull request
+        if: github.event_name == 'pull_request'
+        run: cz check --rev-range ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}
