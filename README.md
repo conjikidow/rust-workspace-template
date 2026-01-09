@@ -50,6 +50,7 @@ To set up release management using `release-plz` and `dist`, follow these steps:
 - Common setup
   1. Set `release = true` in the `[workspace]` section of `.release-plz.toml` to enable releases.
   2. Use a GitHub App to mint the token for `release-plz`, and store the App ID and private key as repository secrets named `APP_ID` and `APP_PRIVATE_KEY` (see [release-plz docs](https://release-plz.dev/docs/github/token#use-a-github-app)).
+  - When using binary publishing with `dist`, the GitHub App must also be granted the `Workflows: Read and write` permission.
 
 - Binary publishing (default; uses `dist`)
   1. `dist` is already configured (`dist-workspace.toml`).
@@ -61,7 +62,7 @@ To set up release management using `release-plz` and `dist`, follow these steps:
      ```
 
 - Library-only publishing
-  1. Remove `dist-workspace.toml` and `.github/workflows/release.yml`, and delete the `[profile.dist]` section from `Cargo.toml`.
+  1. Remove `dist-workspace.toml`, `.github/workflows/release.yml`, and `.github/workflows/dist-generate.yml`, and delete the `[profile.dist]` section from `Cargo.toml`.
   2. Let `release-plz` create the GitHub Release by setting `git_release_enable = true`.
 
 For more details, see [release-plz](https://release-plz.ieni.dev/docs) and [dist](https://axodotdev.github.io/cargo-dist/book).
