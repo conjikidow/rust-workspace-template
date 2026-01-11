@@ -45,29 +45,67 @@ By default this template is binary-first; add `--lib` if you need a library crat
 
 ## Release Management Setup
 
-To set up release management using `release-plz` and `dist`, follow these steps:
+### Overview
 
-- Common setup
-  1. Set `release = true` in the `[workspace]` section of `.release-plz.toml` to enable releases.
-  2. Use a GitHub App to mint the token for `release-plz`, and store the App ID and private key as repository secrets named `APP_ID` and `APP_PRIVATE_KEY` (see [release-plz docs](https://release-plz.dev/docs/github/token#use-a-github-app)).
-  - When using binary publishing with `dist`, the GitHub App must also be granted the `Workflows: Read and write` permission.
+This template uses [release-plz](https://release-plz.dev) to automate releases based on Conventional Commits.
+It opens a release PR and, once merged, publishes the crate and (optionally) creates a GitHub Release.
 
-- Binary publishing (default; uses `dist`)
-  1. `dist` is already configured (`dist-workspace.toml`).
-  2. If you need to change the settings, install `dist` and run `dist init` and follow the prompts.
+Rust workspaces can be either:
 
-     ```bash
-     cargo binstall cargo-dist
-     dist init
-     ```
+- **Binary workspace** (default here): includes at least one binary crate. Publishing binaries is done with [dist](https://axodotdev.github.io/cargo-dist/book), which builds per-platform binaries and uploads them to GitHub Releases.
+- **Library-only workspace**: no binaries. In this case, remove the `dist` configuration and let `release-plz` handle releases only.
 
-- Library-only publishing
-  1. Remove `dist-workspace.toml`, `.github/workflows/release.yml`, and `.github/workflows/dist-generate.yml`, and delete the `[profile.dist]` section from `Cargo.toml`.
-  2. Let `release-plz` create the GitHub Release by setting `git_release_enable = true`.
+### GitHub App Setup (recommended)
 
-For more details, see [release-plz](https://release-plz.ieni.dev/docs) and [dist](https://axodotdev.github.io/cargo-dist/book).
+`release-plz` needs a GitHub token. You can use a PAT, but a GitHub App is the recommended option.
+The App becomes the author of the release PR (e.g. `release-plz[bot]`).
 
-### Trusted publishing (crates.io OIDC)
+Create a minimal GitHub App:
+
+1. Create the App:
+   - Personal account: <https://github.com/settings/apps/new>
+   - Organization: <https://github.com/organizations/><org>/settings/apps/new
+2. **GitHub App name**: any name you like (e.g. `release-bot`).
+3. **Homepage URL**: any URL (your GitHub profile is fine).
+4. **Webhook**: disable it (no URL required).
+5. **Repository permissions**:
+   - `Contents`: Read & write
+   - `Pull requests`: Read & write
+   - If you use protected tags: `Administration`: Read & write
+   - If you publish binaries with `dist`: `Workflows`: Read & write
+6. (Optional) Limit installation scope to your account only.
+7. Create a **private key** from the App settings page and store it securely.
+
+Install the App on the repository where you will run releases.
+
+Store the credentials as GitHub Actions secrets:
+
+- `APP_ID`: the GitHub App ID
+- `APP_PRIVATE_KEY`: the private key content
+
+You can find the secrets page at:
+`https://github.com/<owner>/<repo>/settings/secrets/actions`
+
+### Setup for Binary Workspace (uses cargo-dist)
+
+1. Ensure `.release-plz.toml` has `release = true` under `[workspace]`.
+2. `dist` is already configured via `dist-workspace.toml`.
+3. If you need to reconfigure, install `dist` and run `dist init`:
+
+```bash
+cargo binstall cargo-dist
+dist init
+```
+
+### Setup for Library-only Workspace
+
+1. Remove `dist-workspace.toml`, `.github/workflows/release.yml`, and `.github/workflows/dist-generate.yml`.
+2. Delete the `[profile.dist]` section from `Cargo.toml`.
+3. In `.release-plz.toml`, set `git_release_enable = true` so `release-plz` creates GitHub Releases.
+
+For more details, see [release-plz](https://release-plz.ieni.dev/docs) and [cargo-dist](https://axodotdev.github.io/cargo-dist/book).
+
+### Trusted Publishing (crates.io OIDC)
 
 Enable trusted publishing on crates.io.
 New crates cannot be published via OIDC the first time—run the first `cargo publish` manually.
