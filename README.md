@@ -1,4 +1,4 @@
-# rust-repository-template
+# rust-workspace-template
 
 This is a template repository for Rust workspace.
 
