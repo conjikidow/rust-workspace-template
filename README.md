@@ -1,6 +1,6 @@
 # rust-workspace-template
 
-This is a template repository for Rust workspace.
+This is a template repository for a Rust workspace.
 
 ## GitHub Actions Permissions Setup
 
@@ -29,7 +29,8 @@ version = "0.1.0"
 edition = "2024"
 readme = "README.md"
 license = "Apache-2.0 OR MIT"  # Replace with your license
-repository = "https://github.com/conjikidow/repo"  # Replace with your repository URL
+repository = "https://github.com/<owner>/<repo>"  # Replace with your repository URL
+authors = ["Your Name"]  # Replace with your name
 ```
 
 This template repository includes [`LICENSE-APACHE`](LICENSE-APACHE) and [`LICENSE-MIT`](LICENSE-MIT) by default.
@@ -48,11 +49,11 @@ By default this template is binary-first; add `--lib` if you need a library crat
 ### Overview
 
 This template uses [release-plz](https://release-plz.dev) to automate releases based on Conventional Commits.
-It opens a release PR and, once merged, publishes the crate and (optionally) creates a GitHub Release.
+It opens a release PR and, once merged, publishes the crate to crates.io and (optionally) creates a GitHub Release.
 
-Rust workspaces can be either:
+A Rust workspace can be either:
 
-- **Binary workspace** (default here): includes at least one binary crate. Publishing binaries is done with [dist](https://axodotdev.github.io/cargo-dist/book), which builds per-platform binaries and uploads them to GitHub Releases.
+- **Binary workspace** (default): includes at least one binary crate. Publishing binaries is done with [dist](https://axodotdev.github.io/cargo-dist/book), which builds per-platform binaries and uploads them to GitHub Releases.
 - **Library-only workspace**: no binaries. In this case, remove the `dist` configuration and let `release-plz` handle releases only.
 
 ### GitHub App Setup (recommended)

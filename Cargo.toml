@@ -7,8 +7,8 @@ version = "0.1.0"
 edition = "2024"
 readme = "README.md"
 license = "Apache-2.0 OR MIT"
-repository = "https://github.com/conjikidow/repo"
-authors = ["conjikidow"]
+repository = "https://github.com/<owner>/<repo>"
+authors = ["Your Name"]
 
 [workspace.dependencies]
 
