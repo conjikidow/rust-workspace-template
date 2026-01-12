@@ -48,7 +48,7 @@ By default this template is binary-first; add `--lib` if you need a library crat
 ### Overview
 
 This template uses [release-plz](https://release-plz.dev) to automate releases based on Conventional Commits.
-It opens a release PR and, once merged, publishes the crate and (optionally) creates a GitHub Release.
+It opens a release PR and, once merged, publishes the crate to crates.io and (optionally) creates a GitHub Release.
 
 Rust workspaces can be either:
 
