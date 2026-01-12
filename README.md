@@ -29,7 +29,8 @@ version = "0.1.0"
 edition = "2024"
 readme = "README.md"
 license = "Apache-2.0 OR MIT"  # Replace with your license
-repository = "https://github.com/conjikidow/repo"  # Replace with your repository URL
+repository = "https://github.com/<owner>/<repo>"  # Replace with your repository URL
+authors = ["Your Name"]  # Replace with your name
 ```
 
 This template repository includes [`LICENSE-APACHE`](LICENSE-APACHE) and [`LICENSE-MIT`](LICENSE-MIT) by default.
