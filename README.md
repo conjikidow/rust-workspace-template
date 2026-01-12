@@ -57,15 +57,16 @@ Rust workspaces can be either:
 
 ### GitHub App Setup (recommended)
 
-`release-plz` needs a GitHub token. You can use a PAT, but a GitHub App is the recommended option.
-The App becomes the author of the release PR (e.g. `release-plz[bot]`).
+Release automation workflows in this template need a GitHub token.
+You can use a Personal Access Token, but a GitHub App is the recommended option.
+The App becomes the author of automation PRs (e.g. `automation-bot[bot]`).
 
 Create a minimal GitHub App:
 
 1. Create the App:
    - Personal account: <https://github.com/settings/apps/new>
-   - Organization: <https://github.com/organizations/><org>/settings/apps/new
-2. **GitHub App name**: any name you like (e.g. `release-bot`).
+   - Organization: `https://github.com/organizations/<org>/settings/apps/new`
+2. **GitHub App name**: any name you like (e.g. `automation-bot`).
 3. **Homepage URL**: any URL (your GitHub profile is fine).
 4. **Webhook**: disable it (no URL required).
 5. **Repository permissions**:
@@ -86,29 +87,32 @@ Store the credentials as GitHub Actions secrets:
 You can find the secrets page at:
 `https://github.com/<owner>/<repo>/settings/secrets/actions`
 
-### Setup for Binary Workspace (uses cargo-dist)
+### Setup for Binary Workspace (uses dist)
 
-1. Ensure `.release-plz.toml` has `release = true` under `[workspace]`.
+1. Ensure `.release-plz.toml` has `release = true` under `[workspace]` (this template sets it to `false` by default).
 2. `dist` is already configured via `dist-workspace.toml`.
-3. If you need to reconfigure, install `dist` and run `dist init`:
+   If you need to reconfigure, install `dist` and run `dist init`:
 
-```bash
-cargo binstall cargo-dist
-dist init
-```
+   ```bash
+   cargo binstall cargo-dist
+   dist init
+   ```
 
 ### Setup for Library-only Workspace
 
-1. Remove `dist-workspace.toml`, `.github/workflows/release.yml`, and `.github/workflows/dist-generate.yml`.
-2. Delete the `[profile.dist]` section from `Cargo.toml`.
-3. In `.release-plz.toml`, set `git_release_enable = true` so `release-plz` creates GitHub Releases.
-
-For more details, see [release-plz](https://release-plz.ieni.dev/docs) and [cargo-dist](https://axodotdev.github.io/cargo-dist/book).
+1. Ensure `.release-plz.toml` has `release = true` under `[workspace]` (this template sets it to `false` by default).
+2. Remove `dist-workspace.toml`, `.github/workflows/release.yml`, and `.github/workflows/dist-generate.yml`.
+3. Delete the `[profile.dist]` section from `Cargo.toml`.
+4. In `.release-plz.toml`, set `git_release_enable = true` so `release-plz` creates GitHub Releases.
 
 ### Trusted Publishing (crates.io OIDC)
 
 Enable trusted publishing on crates.io.
 New crates cannot be published via OIDC the first time—run the first `cargo publish` manually.
+
+### References
+
+For more details, see [release-plz](https://release-plz.ieni.dev/docs) and [dist](https://axodotdev.github.io/cargo-dist/book).
 
 ## Pre-commit Hooks Setup
 
@@ -127,13 +131,13 @@ Any tool is fine, but this repository uses [commitizen-tools/commitizen](https:/
 
 Install Commitizen:
 
-```console
+```bash
 uv tool install commitizen
 ```
 
 Use Commitizen instead of `git commit`:
 
-```console
+```bash
 cz commit
 ```
 
