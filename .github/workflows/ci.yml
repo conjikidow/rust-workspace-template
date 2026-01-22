@@ -82,6 +82,21 @@ jobs:
           inputs: ${{ steps.list-workflows.outputs.inputs }}
           # advanced-security: false  # must be false for private repo
 
+  check-prek:
+    name: Check prek
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the main repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check prek
+        uses: j178/prek-action@9d6a3097e0c1865ecce00cfb89fe80f2ee91b547 # v1.0.12
+        with:
+          extra-args: '--all-files --skip no-commit-to-branch'
+
   build-rust:
     name: Check Rust build
     needs: determine-changes
