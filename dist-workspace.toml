@@ -17,6 +17,6 @@ install-path = "CARGO_HOME"
 install-updater = true
 
 [dist.github-action-commits]
-"actions/checkout" = "8e8c483db84b4bee98b60c0593521ed34d9990e8" # v6.0.1
+"actions/checkout" = "de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
 "actions/upload-artifact" = "b7c566a772e6b6bfb58ed0dc250532a479d7789f" # v6.0.0
 "actions/download-artifact" = "37930b1c2abaa49bbe596cd826c3c89aef350131" # v7.0.0
