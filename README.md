@@ -61,6 +61,7 @@ Create a minimal GitHub App:
    - `Contents`: Read & write
    - `Pull requests`: Read & write
    - If you use protected tags: `Administration`: Read & write
+     (also uncomment `permission-administration` in the release job of `.github/workflows/release-plz.yml`)
    - If you publish binaries with `dist`: `Workflows`: Read & write
 6. (Optional) Limit installation scope to your account only.
 7. Create a **private key** from the App settings page and store it securely.

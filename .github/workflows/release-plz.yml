@@ -33,6 +33,9 @@ jobs:
         with:
           client-id: ${{ vars.GH_APP_CLIENT_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: read
+          # permission-administration: write
 
       - name: Run release-plz
         uses: release-plz/action@aec534bbd8631793b9b3b8f1ee6cd886c322e17f # v0.5.133
@@ -67,6 +70,8 @@ jobs:
         with:
           client-id: ${{ vars.GH_APP_CLIENT_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
 
       - name: Run release-plz
         uses: release-plz/action@aec534bbd8631793b9b3b8f1ee6cd886c322e17f # v0.5.133
