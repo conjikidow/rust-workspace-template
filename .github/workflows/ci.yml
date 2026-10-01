@@ -426,12 +426,7 @@ jobs:
       - name: Install Rust toolchain
         uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2.0.0
 
-      - name: Check Rust formatting (push)
-        if: github.event_name != 'pull_request'
-        run: cargo fmt --all -- --check
-
       - name: Format Rust
-        if: github.event_name == 'pull_request'
         run: cargo fmt --all
 
       - name: Suggest Rust formatting
@@ -442,8 +437,7 @@ jobs:
           tool_name: rustfmt
           cleanup: false
 
-      - name: Check Rust formatting (pull request)
-        if: github.event_name == 'pull_request'
+      - name: Check Rust formatting
         run: git diff --exit-code
 
       - name: Lint Rust
