@@ -14,14 +14,15 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
   determine-changes:
     name: Determine changes
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
     outputs:
       github-actions: ${{ steps.changed-files.outputs.github_actions_any_changed }}
       github-actions-ci: ${{ steps.changed-files.outputs.github_actions_ci_any_changed }}
@@ -367,6 +368,8 @@ jobs:
     name: Run prek hooks
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout the main repository
@@ -388,6 +391,8 @@ jobs:
       needs.determine-changes.outputs.github-actions-ci == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout the main repository
@@ -411,7 +416,6 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
-      checks: write
       pull-requests: write
 
     steps:
@@ -502,6 +506,8 @@ jobs:
       needs.determine-changes.outputs.github-actions-ci == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout the main repository
@@ -521,7 +527,6 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: read
-      checks: write
       pull-requests: write
 
     steps:
@@ -548,6 +553,8 @@ jobs:
     name: Lint commit messages
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout the main repository
