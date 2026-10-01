@@ -2,14 +2,16 @@ name: Generate dist release.yml on Renovate PR
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types:
+      - opened
+      - synchronize
+      - reopened
     paths:
       - dist-workspace.toml
 
 permissions: {}
 
 jobs:
-
   generate-workflow:
     name: Generate release.yml on Renovate PR
     if: github.event.pull_request.user.login == 'renovate[bot]'
