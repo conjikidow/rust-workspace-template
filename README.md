@@ -61,7 +61,8 @@ Create a minimal GitHub App:
    - `Contents`: Read & write
    - `Pull requests`: Read & write
    - If you use protected tags: `Administration`: Read & write
-     (also uncomment `permission-administration` in the release job of `.github/workflows/release-plz.yml`)
+     (also uncomment `permission-administration` in the `Publish release` job of `.github/workflows/manage-releases.yml`,
+     the workflow that runs `release-plz`)
    - If you publish binaries with `dist`: `Workflows`: Read & write
 6. (Optional) Limit installation scope to your account only.
 7. Create a **private key** from the App settings page and store it securely.
@@ -90,7 +91,7 @@ You can find the secrets page at:
 ### Setup for Library-only Workspace
 
 1. Ensure `.release-plz.toml` has `release = true` under `[workspace]` (this template sets it to `false` by default).
-2. Remove `dist-workspace.toml`, `.github/workflows/release.yml`, and `.github/workflows/dist-generate.yml`.
+2. Remove `dist-workspace.toml`, `.github/workflows/release.yml`, and `.github/workflows/regenerate-release-workflow.yml`.
 3. Delete the `[profile.dist]` section from `Cargo.toml`.
 4. In `.release-plz.toml`, set `git_release_enable = true` so `release-plz` creates GitHub Releases.
 
