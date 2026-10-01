@@ -7,7 +7,11 @@ on:
       - synchronize
       - reopened
     paths:
-      - dist-workspace.toml
+      - 'dist-workspace.toml'
+
+defaults:
+  run:
+    shell: bash
 
 permissions: {}
 
@@ -40,7 +44,7 @@ jobs:
 
       - name: Install dist
         run: |
-          DIST_VERSION=$(grep -E '^\s*cargo-dist-version\s*=\s*"' dist-workspace.toml | sed -E 's/.*"([^"]+)".*/\1/')
+          DIST_VERSION=$(sed -nE 's/^\s*cargo-dist-version\s*=\s*"([^"]+)".*/\1/p' dist-workspace.toml)
           [ -n "${DIST_VERSION}" ] || { echo "Failed to read cargo-dist-version from dist-workspace.toml"; exit 1; }
           curl --proto '=https' --tlsv1.2 -LsSf \
             "https://github.com/axodotdev/cargo-dist/releases/download/v${DIST_VERSION}/cargo-dist-installer.sh" | sh
@@ -53,9 +57,9 @@ jobs:
         run: |
           if git diff --quiet -- .github/workflows/release.yml; then
             echo "No changes in release.yml"
-            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "changed=false" >> "${GITHUB_OUTPUT}"
           else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "changed=true" >> "${GITHUB_OUTPUT}"
           fi
 
       - name: Configure Git user
@@ -72,6 +76,4 @@ jobs:
 
       - name: Push back to PR branch
         if: steps.diff.outputs.changed == 'true'
-        env:
-          PR_BRANCH: ${{ github.head_ref }}
-        run: git push origin "HEAD:${PR_BRANCH}"
+        run: git push origin "HEAD:${GITHUB_HEAD_REF}"
