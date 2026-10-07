@@ -46,7 +46,7 @@ jobs:
   update-release-pull-request:
     name: Update release pull request
     concurrency:
-      group: release-plz-${{ github.ref }}
+      group: release-pull-request-${{ github.ref }}
       cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 10
