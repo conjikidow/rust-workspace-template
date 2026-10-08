@@ -72,12 +72,12 @@ jobs:
               - '**/*.toml'
               - '.tombi.toml'
             yaml:
-              - '**/*.yml'
               - '**/*.yaml'
+              - '**/*.yml'
               - '.yamllint.yaml'
             rust:
-              - 'rust-toolchain.toml'
               - '**/*.rs'
+              - 'rust-toolchain.toml'
               - '**/Cargo.toml'
               - 'Cargo.lock'
               - '.rustfmt.toml'
