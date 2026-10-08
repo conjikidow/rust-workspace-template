@@ -56,6 +56,7 @@ jobs:
             github_actions:
               - '.github/workflows/**'
               - '.github/actionlint-matcher.json'
+              - '.github/actionlint.yaml'
             github_actions_ci:
               - '.github/workflows/ci.yml'
             pre_commit_config:
