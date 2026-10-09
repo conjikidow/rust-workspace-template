@@ -57,7 +57,7 @@ jobs:
               - '.github/workflows/**'
               - '.github/actionlint.yaml'
               - '.github/zizmor.yaml'
-              - '.github/actionlint-matcher.json'
+              - '.github/problem-matchers/actionlint.json'
             github_actions_ci:
               - '.github/workflows/ci.yml'
             pre_commit_config:
@@ -101,7 +101,7 @@ jobs:
       - name: Lint GitHub Actions
         run: |
           go install github.com/rhysd/actionlint/cmd/actionlint@914e7df21a07ef503a81201c76d2b11c789d3fca # v1.7.12
-          echo "::add-matcher::.github/actionlint-matcher.json"
+          echo "::add-matcher::.github/problem-matchers/actionlint.json"
           "$(go env GOPATH)/bin/actionlint" -color
 
   audit-zizmor:
