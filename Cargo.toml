@@ -11,6 +11,8 @@ license = "Apache-2.0 OR MIT"
 
 [workspace.dependencies]
 
+[workspace.lints]
+
 [profile.dist]
 inherits = "release"
 lto = "thin"
