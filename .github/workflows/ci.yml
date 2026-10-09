@@ -379,6 +379,7 @@ jobs:
       - name: Install Rust toolchain
         uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2.0.0
         with:
+          build-warnings: deny
           matcher: false
 
       - name: Build Rust
@@ -404,10 +405,11 @@ jobs:
       - name: Install Rust toolchain
         uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2.0.0
         with:
+          build-warnings: deny
           matcher: true
 
       - name: Lint Rust
-        run: cargo clippy --workspace --all-targets --all-features -- --deny=warnings
+        run: cargo clippy --workspace --all-targets --all-features --keep-going
 
   format-rust:
     name: Format Rust
@@ -470,6 +472,7 @@ jobs:
       - name: Install Rust toolchain
         uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2.0.0
         with:
+          build-warnings: deny
           matcher: false
 
       - name: Test Rust
