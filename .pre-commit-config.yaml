@@ -37,7 +37,7 @@ repos:
         stages: [pre-commit]
       - id: cargo-clippy
         name: cargo clippy
-        entry: cargo clippy --workspace --all-targets --all-features -- --deny=warnings
+        entry: cargo clippy --config='build.warnings="deny"' --workspace --all-targets --all-features --keep-going
         language: system
         types: [rust]
         pass_filenames: false
