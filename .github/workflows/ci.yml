@@ -53,7 +53,6 @@ jobs:
             github_actions:
               - '.github/workflows/**'
               - '.github/actionlint.yaml'
-              - '.github/zizmor.yaml'
               - '.github/problem-matchers/actionlint.json'
             github_actions_ci:
               - '.github/workflows/ci.yml'
