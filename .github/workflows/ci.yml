@@ -222,31 +222,6 @@ jobs:
           done < <(git ls-files -z '*.json5')
           exit "${exit_code}"
 
-  lint-toml:
-    name: Lint TOML
-    needs: determine-changes
-    if: >-
-      needs.determine-changes.outputs.toml == 'true'
-      || needs.determine-changes.outputs.github-actions-ci == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: read
-
-    steps:
-      - name: Check out the repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Install Tombi
-        uses: tombi-toml/setup-tombi@d8f3250344c4e9107b91c02bc11efcf72baf5793 # v1.7.3
-        with:
-          version: '1.7.3'
-
-      - name: Lint TOML
-        run: tombi lint --error-on-warnings --diagnostics-format=github
-
   format-toml:
     name: Format TOML
     needs: determine-changes
@@ -287,6 +262,31 @@ jobs:
             echo "::error file=${file},title=tombi-format::File is not formatted. Run tombi format."
           done
           git diff --exit-code
+
+  lint-toml:
+    name: Lint TOML
+    needs: determine-changes
+    if: >-
+      needs.determine-changes.outputs.toml == 'true'
+      || needs.determine-changes.outputs.github-actions-ci == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Tombi
+        uses: tombi-toml/setup-tombi@d8f3250344c4e9107b91c02bc11efcf72baf5793 # v1.7.3
+        with:
+          version: '1.7.3'
+
+      - name: Lint TOML
+        run: tombi lint --error-on-warnings --diagnostics-format=github
 
   lint-yaml:
     name: Lint YAML
@@ -339,32 +339,6 @@ jobs:
           version: '0.2.78'
           report-type: annotations
 
-  lint-rust:
-    name: Lint Rust
-    needs: determine-changes
-    if: >-
-      needs.determine-changes.outputs.rust == 'true'
-      || needs.determine-changes.outputs.github-actions-ci == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: read
-
-    steps:
-      - name: Check out the repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Install Rust toolchain
-        uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2.0.0
-        with:
-          build-warnings: deny
-          matcher: true
-
-      - name: Lint Rust
-        run: cargo clippy --workspace --all-targets --all-features --keep-going
-
   format-rust:
     name: Format Rust
     needs: determine-changes
@@ -405,6 +379,32 @@ jobs:
             echo "::error file=${file},title=rustfmt::File is not formatted. Run cargo fmt."
           done
           git diff --exit-code
+
+  lint-rust:
+    name: Lint Rust
+    needs: determine-changes
+    if: >-
+      needs.determine-changes.outputs.rust == 'true'
+      || needs.determine-changes.outputs.github-actions-ci == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install Rust toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2.0.0
+        with:
+          build-warnings: deny
+          matcher: true
+
+      - name: Lint Rust
+        run: cargo clippy --workspace --all-targets --all-features --keep-going
 
   build-rust:
     name: Build Rust
