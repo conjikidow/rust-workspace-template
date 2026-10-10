@@ -108,22 +108,16 @@ For more details, see [release-plz](https://release-plz.ieni.dev/docs) and [dist
 
 This template recommends using [`prek`](https://prek.j178.dev) (a faster, drop-in alternative to [`pre-commit`](https://pre-commit.com)).
 
-Install the hooks by running:
-
-```bash
-uvx prek install --hook-type pre-commit --hook-type commit-msg --hook-type pre-push
-```
-
-If `prek` is already installed:
+Install `prek` by following its [installation guide](https://prek.j178.dev/installation/), then install the hooks:
 
 ```bash
 prek install --hook-type pre-commit --hook-type commit-msg --hook-type pre-push
 ```
 
-If you prefer `pre-commit`:
+If you prefer `pre-commit`, [install it](https://pre-commit.com/#install) and run:
 
 ```bash
-uvx pre-commit install --hook-type pre-commit --hook-type commit-msg --hook-type pre-push
+pre-commit install --hook-type pre-commit --hook-type commit-msg --hook-type pre-push
 ```
 
 ## Commit Message Linting with Commitizen
