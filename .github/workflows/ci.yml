@@ -404,7 +404,7 @@ jobs:
           matcher: true
 
       - name: Lint Rust
-        run: cargo clippy --workspace --all-targets --all-features --keep-going
+        run: cargo clippy --workspace --all-targets --all-features --keep-going --locked
 
   build-rust:
     name: Build Rust
@@ -430,7 +430,7 @@ jobs:
           matcher: false
 
       - name: Build Rust
-        run: cargo check --workspace --all-targets --all-features
+        run: cargo check --workspace --all-targets --all-features --locked
 
   test-rust:
     name: Test Rust
@@ -456,7 +456,7 @@ jobs:
           matcher: false
 
       - name: Test Rust
-        run: cargo test --workspace --all-features
+        run: cargo test --workspace --all-features --locked
 
   check-spelling:
     name: Check spelling

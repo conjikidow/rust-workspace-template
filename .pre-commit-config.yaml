@@ -43,7 +43,8 @@ repos:
         pass_filenames: false
       - id: cargo-clippy
         name: cargo clippy
-        entry: cargo clippy --config='build.warnings="deny"' --workspace --all-targets --all-features --keep-going
+        entry: >-
+          cargo clippy --config='build.warnings="deny"' --workspace --all-targets --all-features --keep-going --locked
         language: system
         types: [rust]
         pass_filenames: false
