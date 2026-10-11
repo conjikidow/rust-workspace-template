@@ -22,7 +22,7 @@ They are provided as a template and may be modified, replaced, or removed as nee
 
 Add packages to the workspace by:
 
-```bash
+```sh
 cargo new --vcs none crates/<package-name>
 ```
 
@@ -83,7 +83,7 @@ You can find the secrets page at:
 2. `dist` is already configured via `dist-workspace.toml`.
    If you need to reconfigure, install `dist` and run `dist init`:
 
-   ```bash
+   ```sh
    cargo binstall cargo-dist
    dist init
    ```
@@ -110,13 +110,13 @@ This template recommends using [`prek`](https://prek.j178.dev) (a faster, drop-i
 
 Install `prek` by following its [installation guide](https://prek.j178.dev/installation/), then install the hooks:
 
-```bash
+```sh
 prek install
 ```
 
 If you prefer `pre-commit`, [install it](https://pre-commit.com/#install) and run:
 
-```bash
+```sh
 pre-commit install
 ```
 
@@ -133,13 +133,13 @@ for checks, so it is recommended.
 
 Install Commitizen:
 
-```bash
+```sh
 uv tool install commitizen
 ```
 
 Use Commitizen instead of `git commit`:
 
-```bash
+```sh
 cz commit
 ```
 
