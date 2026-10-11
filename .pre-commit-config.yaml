@@ -39,14 +39,14 @@ repos:
         name: cargo fmt
         entry: cargo fmt --all
         language: system
-        types: [rust]
+        types_or: [rust, cargo]
         pass_filenames: false
       - id: cargo-clippy
         name: cargo clippy
         entry: >-
           cargo clippy --config='build.warnings="deny"' --workspace --all-targets --all-features --keep-going --locked
         language: system
-        types: [rust]
+        types_or: [rust, cargo, cargo-lock]
         pass_filenames: false
         stages: [pre-push]
 
