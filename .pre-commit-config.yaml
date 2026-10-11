@@ -40,7 +40,6 @@ repos:
         language: system
         types: [rust]
         pass_filenames: false
-        stages: [pre-commit]
       - id: cargo-clippy
         name: cargo clippy
         entry: cargo clippy --config='build.warnings="deny"' --workspace --all-targets --all-features --keep-going
@@ -84,5 +83,3 @@ repos:
     hooks:
       - id: commitizen
       - id: commitizen-branch
-        stages:
-          - pre-push
