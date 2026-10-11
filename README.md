@@ -127,7 +127,7 @@ The hook types to install are set by `default_install_hook_types` in `.pre-commi
 This template repository enforces [Conventional Commits](https://www.conventionalcommits.org) in pre-commit hooks and CI,
 so your commit messages must follow that format.
 
-You can maintain Conventional Commits manually, but automation tools such as Commitizen or git-cz can help.
+You can maintain Conventional Commits manually, but automation tools such as Commitizen or cz-git can help.
 Any tool is fine, but this repository uses [commitizen-tools/commitizen](https://github.com/commitizen-tools/commitizen)
 for checks, so it is recommended.
 
