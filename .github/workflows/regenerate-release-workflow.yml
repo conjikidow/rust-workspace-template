@@ -43,7 +43,10 @@ jobs:
       - name: Install dist
         run: |
           dist_version="$(sed -nE 's/^\s*cargo-dist-version\s*=\s*"([^"]+)".*/\1/p' dist-workspace.toml)"
-          [ -n "${dist_version}" ] || { echo "Failed to read cargo-dist-version from dist-workspace.toml"; exit 1; }
+          if [ -z "${dist_version}" ]; then
+            echo "::error::Failed to read cargo-dist-version from dist-workspace.toml"
+            exit 1
+          fi
           curl --proto '=https' --tlsv1.2 -LsSf \
             "https://github.com/axodotdev/cargo-dist/releases/download/v${dist_version}/cargo-dist-installer.sh" | sh
 
