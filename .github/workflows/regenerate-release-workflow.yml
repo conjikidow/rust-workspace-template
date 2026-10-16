@@ -42,10 +42,10 @@ jobs:
 
       - name: Install dist
         run: |
-          DIST_VERSION=$(sed -nE 's/^\s*cargo-dist-version\s*=\s*"([^"]+)".*/\1/p' dist-workspace.toml)
-          [ -n "${DIST_VERSION}" ] || { echo "Failed to read cargo-dist-version from dist-workspace.toml"; exit 1; }
+          dist_version="$(sed -nE 's/^\s*cargo-dist-version\s*=\s*"([^"]+)".*/\1/p' dist-workspace.toml)"
+          [ -n "${dist_version}" ] || { echo "Failed to read cargo-dist-version from dist-workspace.toml"; exit 1; }
           curl --proto '=https' --tlsv1.2 -LsSf \
-            "https://github.com/axodotdev/cargo-dist/releases/download/v${DIST_VERSION}/cargo-dist-installer.sh" | sh
+            "https://github.com/axodotdev/cargo-dist/releases/download/v${dist_version}/cargo-dist-installer.sh" | sh
 
       - name: Generate release workflow
         run: dist generate
