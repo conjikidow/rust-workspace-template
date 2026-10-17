@@ -121,6 +121,19 @@
       ],
       fileFormat: 'yaml',
       matchStrings: [
+        'jobs.*.steps[$exists(env.SHELLCHECK_PY_VERSION)].{ "currentValue": env.SHELLCHECK_PY_VERSION }',
+      ],
+      depNameTemplate: 'shellcheck-py/shellcheck-py',
+      datasourceTemplate: 'pypi',
+      packageNameTemplate: 'shellcheck-py',
+    },
+    {
+      customType: 'jsonata',
+      managerFilePatterns: [
+        '/^\\.github/workflows/.*\\.ya?ml$/',
+      ],
+      fileFormat: 'yaml',
+      matchStrings: [
         'jobs.*.steps[$substringBefore(uses, "@") = "tombi-toml/setup-tombi"].{ "currentValue": with.version }',
       ],
       depNameTemplate: 'tombi-toml/tombi',
