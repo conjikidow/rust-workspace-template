@@ -129,7 +129,7 @@ jobs:
             echo 'inputs<<EOF'
             find .github/workflows -maxdepth 1 -type f \( -name '*.yml' -o -name '*.yaml' \) \
               ! -name 'release.yml'
-            if [ -f .pre-commit-config.yaml ]; then
+            if [[ -f .pre-commit-config.yaml ]]; then
               echo .pre-commit-config.yaml
             fi
             echo 'EOF'
