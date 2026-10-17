@@ -43,7 +43,7 @@ jobs:
       - name: Install dist
         run: |
           dist_version="$(sed -nE 's/^\s*cargo-dist-version\s*=\s*"([^"]+)".*/\1/p' dist-workspace.toml)"
-          if [ -z "${dist_version}" ]; then
+          if [[ -z ${dist_version} ]]; then
             echo '::error::Failed to read cargo-dist-version from dist-workspace.toml'
             exit 1
           fi
