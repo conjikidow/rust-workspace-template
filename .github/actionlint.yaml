@@ -7,3 +7,6 @@ paths:
 
       # shellcheck SC2129: Consider using { cmd1; cmd2; } >> file
       - 'shellcheck reported issue in this script: SC2129:.*'
+
+      # shellcheck SC2292: Prefer [[ ]] over [ ] for tests in Bash/Ksh
+      - 'shellcheck reported issue in this script: SC2292:.*'
