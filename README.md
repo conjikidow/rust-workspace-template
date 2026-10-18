@@ -40,8 +40,8 @@ A Rust workspace can be either:
 - **Binary workspace** (default): includes at least one binary crate.
   Publishing binaries is done with [dist](https://axodotdev.github.io/cargo-dist/book),
   which builds per-platform binaries and uploads them to GitHub Releases.
-- **Library-only workspace**: no binaries. In this case, remove the `dist`
-  configuration and let `release-plz` handle releases only.
+- **Library-only workspace**: no binaries.
+  In this case, remove the `dist` configuration and let `release-plz` handle releases only.
 
 ### GitHub App Setup (recommended)
 
@@ -149,6 +149,5 @@ For more details, see [Commitizen documentation](https://commitizen-tools.github
 
 Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT license](LICENSE-MIT) at your option.
 
-Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in this software
-by you, as defined in the Apache-2.0 license, shall be dually licensed as above,
-without any additional terms or conditions.
+Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in this software by you,
+as defined in the Apache-2.0 license, shall be dually licensed as above, without any additional terms or conditions.
