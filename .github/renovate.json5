@@ -168,6 +168,27 @@
       allowedVersions: '/^v?\\d+\\.\\d+\\.\\d+$/',
     },
     {
+      matchFileNames: [
+        '.github/workflows/**',
+        '.pre-commit-config.yaml',
+        'dist-workspace.toml',
+        'rust-toolchain.toml',
+      ],
+      labels: [
+        'automated',
+        'dev-dependencies',
+      ],
+    },
+    {
+      matchDepTypes: [
+        'dev-dependencies',
+      ],
+      labels: [
+        'automated',
+        'dev-dependencies',
+      ],
+    },
+    {
       matchManagers: [
         'pre-commit',
       ],
