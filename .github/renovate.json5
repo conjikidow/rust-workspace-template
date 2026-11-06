@@ -2,6 +2,7 @@
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
     'config:best-practices',
+    ':semanticCommitTypeAll(build)',
   ],
   ignorePaths: [
     '.github/workflows/release.yml',
@@ -174,6 +175,7 @@
         'dist-workspace.toml',
         'rust-toolchain.toml',
       ],
+      semanticCommitScope: 'deps-dev',
       labels: [
         'automated',
         'dev-dependencies',
@@ -183,6 +185,7 @@
       matchDepTypes: [
         'dev-dependencies',
       ],
+      semanticCommitScope: 'deps-dev',
       labels: [
         'automated',
         'dev-dependencies',
