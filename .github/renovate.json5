@@ -173,7 +173,6 @@
         '.github/workflows/**',
         '.pre-commit-config.yaml',
         'dist-workspace.toml',
-        'rust-toolchain.toml',
       ],
       semanticCommitScope: 'deps-dev',
       labels: [
