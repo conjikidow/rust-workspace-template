@@ -104,6 +104,17 @@ New crates cannot be published via OIDC the first time—run the first `cargo pu
 
 For more details, see [release-plz](https://release-plz.ieni.dev/docs) and [dist](https://axodotdev.github.io/cargo-dist/book).
 
+## Required Status Check
+
+The CI workflow ends with a `Check CI results` job, which fails if any other job in the workflow failed or was cancelled.
+Require this single check in a branch ruleset for the default branch instead of listing each CI job.
+
+When you add a job to `.github/workflows/ci.yml`, also add it to the `needs` of `check-ci-results`.
+Otherwise, the new job does not block merging when it fails.
+
+If you squash-merge pull requests with the pull request title as the commit message,
+also require the `Lint pull request title` check.
+
 ## Pre-commit Hooks Setup
 
 This template recommends using [`prek`](https://prek.j178.dev) (a faster, drop-in alternative to [`pre-commit`](https://pre-commit.com)).
