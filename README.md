@@ -112,6 +112,9 @@ Require this single check in a branch ruleset for the default branch instead of 
 When you add a job to `.github/workflows/ci.yml`, also add it to the `needs` of `check-ci-results`.
 Otherwise, the new job does not block merging when it fails.
 
+If you squash-merge pull requests with the pull request title as the commit message,
+also require the `Lint pull request title` check.
+
 ## Pre-commit Hooks Setup
 
 This template recommends using [`prek`](https://prek.j178.dev) (a faster, drop-in alternative to [`pre-commit`](https://pre-commit.com)).
