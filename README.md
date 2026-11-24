@@ -92,7 +92,8 @@ You can find the secrets page at:
 ### Setup for Library-only Workspace
 
 1. Ensure `.release-plz.toml` has `release = true` under `[workspace]` (this template sets it to `false` by default).
-2. Remove `dist-workspace.toml`, `.github/workflows/release.yml`, and `.github/workflows/regenerate-release-workflow.yml`.
+2. Remove `dist-workspace.toml`, `.github/workflows/release.yml`, `.github/workflows/regenerate-release-workflow.yml`,
+   and `.github/workflows/set-release-title.yml`.
 3. Delete the `[profile.dist]` section from `Cargo.toml`.
 4. In `.release-plz.toml`, set `git_release_enable = true` so `release-plz` creates GitHub Releases.
 
