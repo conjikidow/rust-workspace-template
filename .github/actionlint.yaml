@@ -10,3 +10,6 @@ paths:
 
       # shellcheck SC2292: Prefer [[ ]] over [ ] for tests in Bash/Ksh
       - 'shellcheck reported issue in this script: SC2292:.*'
+
+      # actionlint workflow-call: Reusable workflow calls with the self-repository syntax `$/`
+      - 'reusable workflow call "\$/.*" at "uses" is not following the format.*'

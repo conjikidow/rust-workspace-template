@@ -1,0 +1,30 @@
+name: Set release title
+
+on:
+  workflow_call:
+    inputs:
+      plan:
+        required: true
+        type: string
+
+defaults:
+  run:
+    shell: bash
+
+permissions: {}
+
+jobs:
+  set-release-title:
+    name: Set release title
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+
+    steps:
+      - name: Set the release title to the tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ fromJSON(inputs.plan).announcement_tag }}
+        run: gh release edit "${RELEASE_TAG}" --title="${RELEASE_TAG}"
