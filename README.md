@@ -80,6 +80,7 @@ You can find the secrets page at:
 ### Setup for Binary Workspace (uses dist)
 
 1. Ensure `.release-plz.toml` has `release = true` under `[workspace]` (this template sets it to `false` by default).
+
 2. `dist` is already configured via `dist-workspace.toml`.
    If you need to reconfigure, install `dist` and run `dist init`:
 
