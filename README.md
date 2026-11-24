@@ -14,10 +14,10 @@ version = "0.1.0"
 edition = "2024"
 readme = "README.md"
 repository = "https://github.com/<owner>/<repo>"  # Replace with your repository URL
-license = "Apache-2.0 OR MIT"  # Replace with your license
+license = "MIT OR Apache-2.0"  # Replace with your license
 ```
 
-This template repository includes [`LICENSE-APACHE`](LICENSE-APACHE) and [`LICENSE-MIT`](LICENSE-MIT) by default.
+This template repository includes [`LICENSE-MIT`](LICENSE-MIT) and [`LICENSE-APACHE`](LICENSE-APACHE) by default.
 They are provided as a template and may be modified, replaced, or removed as needed.
 
 Add packages to the workspace by:
@@ -159,7 +159,7 @@ For more details, see [Commitizen documentation](https://commitizen-tools.github
 
 ## License
 
-Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT license](LICENSE-MIT) at your option.
+Licensed under either of [MIT license](LICENSE-MIT) or [Apache License, Version 2.0](LICENSE-APACHE) at your option.
 
 Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in this software by you,
 as defined in the Apache-2.0 license, shall be dually licensed as above, without any additional terms or conditions.
