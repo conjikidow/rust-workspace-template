@@ -5,3 +5,16 @@ pr_labels = ["release", "automated"]
 publish_timeout = "10m"
 release = false  # Set to true to enable releases
 release_always = false
+release_commits = "^((feat|fix|perf|revert|docs)(\\([^)]*\\))?!?:|build\\(deps\\)!?:|chore: update Cargo\\.(toml|lock) dependencies|[a-z]+(\\([^)]*\\))?!:)"
+
+[changelog]
+commit_parsers = [
+  { message = "^feat", group = "added" },
+  { message = "^fix", group = "fixed" },
+  { message = "^(perf|refactor)", group = "changed" },
+  { message = "^docs", group = "documentation" },
+  { message = "^build\\(deps\\)", group = "dependencies", scope = "" },
+  { message = "^chore: update Cargo\\.(toml|lock) dependencies", group = "dependencies" },
+  { message = "^build\\(deps-dev\\)", skip = true },
+  { message = "^.*", group = "other" },
+]
